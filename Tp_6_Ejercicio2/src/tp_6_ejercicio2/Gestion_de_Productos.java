@@ -54,7 +54,9 @@ public class Gestion_de_Productos extends javax.swing.JInternalFrame {
         jBBuscar = new javax.swing.JButton();
         jBCerrar = new javax.swing.JButton();
 
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setText("Gestion de productos");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
