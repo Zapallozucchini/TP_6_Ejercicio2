@@ -5,11 +5,15 @@
  */
 package tp_6_ejercicio2;
 
+
+import java.util.TreeSet;
+
 /**
  *
  * @author Lenovo
  */
 public class DeTodo_SA extends javax.swing.JFrame {
+    private static TreeSet<Producto> productos = new TreeSet<>();
 
     /**
      * Creates new form DeTodo_SA
@@ -27,42 +31,57 @@ public class DeTodo_SA extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jMAdministracion = new javax.swing.JMenu();
+        jMIGestionDeProducto = new javax.swing.JMenuItem();
+        jMConsulta = new javax.swing.JMenu();
+        jMIConsultaNombre = new javax.swing.JMenuItem();
+        jMIConsultaPrecio = new javax.swing.JMenuItem();
+        jMIConsultaRubro = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 673, Short.MAX_VALUE)
+        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
+        escritorio.setLayout(escritorioLayout);
+        escritorioLayout.setHorizontalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 813, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 372, Short.MAX_VALUE)
+        escritorioLayout.setVerticalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 692, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Administracion");
-        jMenuBar1.add(jMenu1);
+        jMAdministracion.setText("Administracion");
+        jMAdministracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMAdministracionActionPerformed(evt);
+            }
+        });
 
-        jMenu2.setText("Consulta");
+        jMIGestionDeProducto.setText("Gestion de Producto");
+        jMIGestionDeProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIGestionDeProductoActionPerformed(evt);
+            }
+        });
+        jMAdministracion.add(jMIGestionDeProducto);
 
-        jMenuItem3.setText("Consulta por Nombre");
-        jMenu2.add(jMenuItem3);
+        jMenuBar1.add(jMAdministracion);
 
-        jMenuItem4.setText("Consulta por Precio");
-        jMenu2.add(jMenuItem4);
+        jMConsulta.setText("Consulta");
 
-        jMenuItem5.setText("Consulta por Rubro");
-        jMenu2.add(jMenuItem5);
+        jMIConsultaNombre.setText("Consulta por Nombre");
+        jMConsulta.add(jMIConsultaNombre);
 
-        jMenuBar1.add(jMenu2);
+        jMIConsultaPrecio.setText("Consulta por Precio");
+        jMConsulta.add(jMIConsultaPrecio);
+
+        jMIConsultaRubro.setText("Consulta por Rubro");
+        jMConsulta.add(jMIConsultaRubro);
+
+        jMenuBar1.add(jMConsulta);
 
         setJMenuBar(jMenuBar1);
 
@@ -70,16 +89,26 @@ public class DeTodo_SA extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(escritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(escritorio)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMAdministracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAdministracionActionPerformed
+        
+    }//GEN-LAST:event_jMAdministracionActionPerformed
+
+    private void jMIGestionDeProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIGestionDeProductoActionPerformed
+        Gestion_de_Productos gestionProducto = new Gestion_de_Productos(productos);
+        escritorio.add(gestionProducto);
+        gestionProducto.setVisible(true);
+    }//GEN-LAST:event_jMIGestionDeProductoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,12 +146,13 @@ public class DeTodo_SA extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JMenu jMAdministracion;
+    private javax.swing.JMenu jMConsulta;
+    private javax.swing.JMenuItem jMIConsultaNombre;
+    private javax.swing.JMenuItem jMIConsultaPrecio;
+    private javax.swing.JMenuItem jMIConsultaRubro;
+    private javax.swing.JMenuItem jMIGestionDeProducto;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     // End of variables declaration//GEN-END:variables
 }
