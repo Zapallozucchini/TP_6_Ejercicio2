@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Lenovo
  */
 public class Gestion_de_Productos extends javax.swing.JInternalFrame {
+public static TreeSet<Producto> listadoProducto = new TreeSet<>();
 public static DefaultTableModel modelo = new DefaultTableModel();
     /**
      * Creates new form Gestion_de_Productos
@@ -277,11 +278,12 @@ public static DefaultTableModel modelo = new DefaultTableModel();
                         .addGap(65, 65, 65)
                         .addComponent(jBCerrar)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -305,7 +307,9 @@ public static DefaultTableModel modelo = new DefaultTableModel();
     }//GEN-LAST:event_jBNuevoActionPerformed
 
     private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed
+        
         dispose();
+        
     }//GEN-LAST:event_jBCerrarActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
@@ -339,6 +343,7 @@ public static DefaultTableModel modelo = new DefaultTableModel();
             int stock = (int) jSStock.getValue();
             Producto producto = new Producto(codigo, descripcion,precio, stock, rubro);
             agregarProductoTabla(producto);
+            listadoProducto.add(producto);
             JOptionPane.showMessageDialog(null, "Se cargó el producto.");
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "El precio debe ser un número válido.", "Error de formato", JOptionPane.ERROR_MESSAGE);
