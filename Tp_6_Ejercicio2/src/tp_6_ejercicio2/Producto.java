@@ -4,11 +4,13 @@
  */
 package tp_6_ejercicio2;
 
+import java.util.Objects;
+
 /**
  *
  * @author Usuario
  */
-public class Producto {
+public class Producto implements Comparable<Producto>{
     private int codigo;
     private String descripcion;
     private double precio;
@@ -22,8 +24,6 @@ public class Producto {
         this.stock = stock;
         this.rubro = rubro;
     }
-
-    
 
     public int getCodigo() {
         return codigo;
@@ -54,10 +54,27 @@ public class Producto {
     }
     public void setRubro(Rubro rubro) {
         this.rubro = rubro;
+    }    
+    
+    public int compareTo(Producto other) {
+        int result = Integer.compare(this.codigo, other.codigo);
+        if (result == 0) {
+            result = this.descripcion.compareTo(other.descripcion);
+        }
+        return result;
     }
 
-    Rubro getCategoria() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Producto producto = (Producto) obj;
+        return codigo == producto.codigo &&
+               Objects.equals(descripcion, producto.descripcion);
     }
-      
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(codigo, descripcion);
+    }
 }

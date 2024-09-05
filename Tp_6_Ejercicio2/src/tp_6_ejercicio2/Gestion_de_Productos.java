@@ -330,28 +330,34 @@ public static DefaultTableModel modelo = new DefaultTableModel();
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         try {
-            int codigo = Integer.parseInt(jTCodigo.getText());
-            Rubro rubro = (Rubro) jCBRubro.getSelectedItem();
-            if (rubro == null) {
-                throw new IllegalArgumentException("Por favor seleccione una categoría.");
-            }
-            String descripcion = jTDescripcion.getText().trim();
-            if (descripcion.isEmpty()) {
-                throw new IllegalArgumentException("La descripcion del producto no puede estar vacío.");
-            }
-            double precio = Double.parseDouble(jTPrecio.getText());
-            int stock = (int) jSStock.getValue();
-            Producto producto = new Producto(codigo, descripcion,precio, stock, rubro);
-            agregarProductoTabla(producto);
-            listadoProducto.add(producto);
-            JOptionPane.showMessageDialog(null, "Se cargó el producto.");
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "El precio debe ser un número válido.", "Error de formato", JOptionPane.ERROR_MESSAGE);
-        } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Error de entrada", JOptionPane.WARNING_MESSAGE);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        int codigo = Integer.parseInt(jTCodigo.getText().trim());
+        Rubro rubro = (Rubro) jCBRubro.getSelectedItem();
+        if (rubro == null) {
+            throw new IllegalArgumentException("Por favor seleccione una categoría.");
         }
+        String descripcion = jTDescripcion.getText().trim();
+        if (descripcion.isEmpty()) {
+            throw new IllegalArgumentException("La descripción del producto no puede estar vacía.");
+        }
+        double precio = Double.parseDouble(jTPrecio.getText().trim());
+        int stock = (int) jSStock.getValue(); // Obtener el valor correcto del JSpinner
+        
+        Producto producto = new Producto(codigo, descripcion, precio, stock, rubro);
+
+        // Usar TreeSet para evitar duplicados
+        if (!listadoProducto.add(producto)) {
+            JOptionPane.showMessageDialog(null, "El producto ya existe.", "Error de duplicación", JOptionPane.WARNING_MESSAGE);
+        } else {
+            agregarProductoTabla(producto);
+            JOptionPane.showMessageDialog(null, "Se cargó el producto correctamente.");
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "El precio debe ser un número válido.", "Error de formato", JOptionPane.ERROR_MESSAGE);
+    } catch (IllegalArgumentException e) {
+        JOptionPane.showMessageDialog(null, e.getMessage(), "Error de entrada", JOptionPane.WARNING_MESSAGE);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jBGuardarActionPerformed
 
 
