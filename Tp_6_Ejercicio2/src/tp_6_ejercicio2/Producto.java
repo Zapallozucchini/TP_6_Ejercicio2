@@ -56,25 +56,16 @@ public class Producto implements Comparable<Producto>{
         this.rubro = rubro;
     }    
     
-    public int compareTo(Producto other) {
-        int result = Integer.compare(this.codigo, other.codigo);
-        if (result == 0) {
-            result = this.descripcion.compareTo(other.descripcion);
-        }
-        return result;
+    @Override
+    public int compareTo(Producto producto) {
+        int result = Integer.compare(this.codigo, producto.codigo);
+    
+    if (result != 0) {
+        result = this.descripcion.compareTo(producto.descripcion);
+    }
+    
+    return result;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Producto producto = (Producto) obj;
-        return codigo == producto.codigo &&
-               Objects.equals(descripcion, producto.descripcion);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(codigo, descripcion);
-    }
+    
 }

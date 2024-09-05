@@ -129,8 +129,6 @@ public class DeTodo_SA extends javax.swing.JFrame {
         ListadoPorPrecio listadoPorPrecio = new ListadoPorPrecio();
         escritorio.add(listadoPorPrecio);
         listadoPorPrecio.setVisible(true);
-        
-        
     }//GEN-LAST:event_jMIConsultaPrecioActionPerformed
 
     private void jMIConsultaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConsultaNombreActionPerformed
@@ -139,6 +137,11 @@ public class DeTodo_SA extends javax.swing.JFrame {
         listadoPorNombre.setVisible(true);
     }//GEN-LAST:event_jMIConsultaNombreActionPerformed
 
+    private void jMIConsultaRubroActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+       ListadoPorRubro listadoPorRubro = new ListadoPorRubro();
+        escritorio.add(listadoPorRubro);
+        listadoPorRubro.setVisible(true);
+    }    
     /**
      * @param args the command line arguments
      */
