@@ -76,14 +76,14 @@ public class DeTodo_SA extends javax.swing.JFrame {
         jMConsulta.add(jMIConsultaNombre);
 
         jMIConsultaPrecio.setText("Consulta por Precio");
+        jMIConsultaPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIConsultaPrecioActionPerformed(evt);
+            }
+        });
         jMConsulta.add(jMIConsultaPrecio);
 
         jMIConsultaRubro.setText("Consulta por Rubro");
-        jMIConsultaRubro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMIConsultaRubroActionPerformed(evt);
-            }
-        });
         jMConsulta.add(jMIConsultaRubro);
 
         jMenuBar1.add(jMConsulta);
@@ -115,11 +115,13 @@ public class DeTodo_SA extends javax.swing.JFrame {
         gestionProducto.setVisible(true);
     }//GEN-LAST:event_jMIGestionDeProductoActionPerformed
 
-    private void jMIConsultaRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConsultaRubroActionPerformed
-       ListadoPorRubro listadoPorRubro = new ListadoPorRubro();
-        escritorio.add(listadoPorRubro);
-        listadoPorRubro.setVisible(true);
-    }//GEN-LAST:event_jMIConsultaRubroActionPerformed
+    private void jMIConsultaPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConsultaPrecioActionPerformed
+        ListadoPorPrecio listadoPorPrecio = new ListadoPorPrecio();
+        escritorio.add(listadoPorPrecio);
+        listadoPorPrecio.setVisible(true);
+        
+        
+    }//GEN-LAST:event_jMIConsultaPrecioActionPerformed
 
     /**
      * @param args the command line arguments
