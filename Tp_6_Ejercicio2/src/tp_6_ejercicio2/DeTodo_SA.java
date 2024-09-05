@@ -73,6 +73,11 @@ public class DeTodo_SA extends javax.swing.JFrame {
         jMConsulta.setText("Consulta");
 
         jMIConsultaNombre.setText("Consulta por Nombre");
+        jMIConsultaNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIConsultaNombreActionPerformed(evt);
+            }
+        });
         jMConsulta.add(jMIConsultaNombre);
 
         jMIConsultaPrecio.setText("Consulta por Precio");
@@ -84,6 +89,11 @@ public class DeTodo_SA extends javax.swing.JFrame {
         jMConsulta.add(jMIConsultaPrecio);
 
         jMIConsultaRubro.setText("Consulta por Rubro");
+        jMIConsultaRubro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIConsultaRubroActionPerformed(evt);
+            }
+        });
         jMConsulta.add(jMIConsultaRubro);
 
         jMenuBar1.add(jMConsulta);
@@ -122,6 +132,12 @@ public class DeTodo_SA extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jMIConsultaPrecioActionPerformed
+
+    private void jMIConsultaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConsultaNombreActionPerformed
+       ListadoPorNombre listadoPorNombre = new ListadoPorNombre();
+        escritorio.add(listadoPorNombre);
+        listadoPorNombre.setVisible(true);
+    }//GEN-LAST:event_jMIConsultaNombreActionPerformed
 
     /**
      * @param args the command line arguments
