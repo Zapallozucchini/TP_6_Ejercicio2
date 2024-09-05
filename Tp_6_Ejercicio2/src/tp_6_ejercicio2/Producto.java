@@ -23,6 +23,8 @@ public class Producto {
         this.rubro = rubro;
     }
 
+    
+
     public int getCodigo() {
         return codigo;
     }

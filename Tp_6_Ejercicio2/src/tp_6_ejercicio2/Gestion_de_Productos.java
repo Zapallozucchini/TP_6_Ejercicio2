@@ -6,19 +6,23 @@
 package tp_6_ejercicio2;
 
 import java.util.TreeSet;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Lenovo
  */
 public class Gestion_de_Productos extends javax.swing.JInternalFrame {
-
+public static DefaultTableModel modelo = new DefaultTableModel();
     /**
      * Creates new form Gestion_de_Productos
      */
     public Gestion_de_Productos(TreeSet<Producto> productos) {
         initComponents();
-        
+        cargarComboBox();
+        cargarModeloTabla();
     }
 
     
@@ -50,9 +54,9 @@ public class Gestion_de_Productos extends javax.swing.JInternalFrame {
         jBNuevo = new javax.swing.JButton();
         jBBuscar = new javax.swing.JButton();
         jBCerrar = new javax.swing.JButton();
-        jBNuevo1 = new javax.swing.JButton();
-        jBNuevo2 = new javax.swing.JButton();
-        jBNuevo3 = new javax.swing.JButton();
+        jBActualizar = new javax.swing.JButton();
+        jBEliminar = new javax.swing.JButton();
+        jBGuardar = new javax.swing.JButton();
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
@@ -63,7 +67,7 @@ public class Gestion_de_Productos extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setText("Filtrar por Categoria:");
 
-        jCBFiltrar.setFont(new java.awt.Font("Times New Roman", 2, 18)); // NOI18N
+        jCBFiltrar.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jCBFiltrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBFiltrarActionPerformed(evt);
@@ -120,9 +124,9 @@ public class Gestion_de_Productos extends javax.swing.JInternalFrame {
             }
         });
 
-        jCBRubro.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jCBRubro.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
-        jSStock.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jSStock.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -195,27 +199,27 @@ public class Gestion_de_Productos extends javax.swing.JInternalFrame {
             }
         });
 
-        jBNuevo1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jBNuevo1.setText("Actualizar");
-        jBNuevo1.addActionListener(new java.awt.event.ActionListener() {
+        jBActualizar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jBActualizar.setText("Actualizar");
+        jBActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBNuevo1ActionPerformed(evt);
+                jBActualizarActionPerformed(evt);
             }
         });
 
-        jBNuevo2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jBNuevo2.setText("Eliminar");
-        jBNuevo2.addActionListener(new java.awt.event.ActionListener() {
+        jBEliminar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jBEliminar.setText("Eliminar");
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBNuevo2ActionPerformed(evt);
+                jBEliminarActionPerformed(evt);
             }
         });
 
-        jBNuevo3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jBNuevo3.setText("Guardar");
-        jBNuevo3.addActionListener(new java.awt.event.ActionListener() {
+        jBGuardar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jBGuardar.setText("Guardar");
+        jBGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBNuevo3ActionPerformed(evt);
+                jBGuardarActionPerformed(evt);
             }
         });
 
@@ -237,20 +241,20 @@ public class Gestion_de_Productos extends javax.swing.JInternalFrame {
                                     .addComponent(jBBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
                                     .addComponent(jBCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jCBFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jCBFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jBNuevo3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jBNuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jBGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jBNuevo2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addComponent(jBActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 162, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -275,10 +279,10 @@ public class Gestion_de_Productos extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBNuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBNuevo2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBNuevo3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(8, Short.MAX_VALUE))
+                    .addComponent(jBActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -301,7 +305,7 @@ public class Gestion_de_Productos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBNuevoActionPerformed
 
     private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_jBCerrarActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
@@ -312,28 +316,49 @@ public class Gestion_de_Productos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBFiltrarActionPerformed
 
-    private void jBNuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevo1ActionPerformed
+    private void jBActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBActualizarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jBNuevo1ActionPerformed
+    }//GEN-LAST:event_jBActualizarActionPerformed
 
-    private void jBNuevo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevo2ActionPerformed
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jBNuevo2ActionPerformed
+    }//GEN-LAST:event_jBEliminarActionPerformed
 
-    private void jBNuevo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevo3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBNuevo3ActionPerformed
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+        try {
+            int codigo = Integer.parseInt(jTCodigo.getText());
+            Rubro rubro = (Rubro) jCBRubro.getSelectedItem();
+            if (rubro == null) {
+                throw new IllegalArgumentException("Por favor seleccione una categoría.");
+            }
+            String descripcion = jTDescripcion.getText().trim();
+            if (descripcion.isEmpty()) {
+                throw new IllegalArgumentException("La descripcion del producto no puede estar vacío.");
+            }
+            double precio = Double.parseDouble(jTPrecio.getText());
+            int stock = (int) jSStock.getValue();
+            Producto producto = new Producto(codigo, descripcion,precio, stock, rubro);
+            agregarProductoTabla(producto);
+            JOptionPane.showMessageDialog(null, "Se cargó el producto.");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El precio debe ser un número válido.", "Error de formato", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error de entrada", JOptionPane.WARNING_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jBGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBActualizar;
     private javax.swing.JButton jBBuscar;
     private javax.swing.JButton jBCerrar;
+    private javax.swing.JButton jBEliminar;
+    private javax.swing.JButton jBGuardar;
     private javax.swing.JButton jBNuevo;
-    private javax.swing.JButton jBNuevo1;
-    private javax.swing.JButton jBNuevo2;
-    private javax.swing.JButton jBNuevo3;
-    private javax.swing.JComboBox<String> jCBFiltrar;
-    private javax.swing.JComboBox<String> jCBRubro;
+    private javax.swing.JComboBox<Rubro> jCBFiltrar;
+    private javax.swing.JComboBox<Rubro> jCBRubro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -349,4 +374,24 @@ public class Gestion_de_Productos extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTFiltrar;
     private javax.swing.JTextField jTPrecio;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarComboBox(){
+        jCBFiltrar.setModel(new DefaultComboBoxModel<>(Rubro.values()));
+        jCBRubro.setModel(new DefaultComboBoxModel<>(Rubro.values()));
+    }
+    
+    private void cargarModeloTabla(){
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Stock");
+        modelo.addColumn("Rubro");
+        jTFiltrar.setModel(modelo);
+    }
+
+    private void agregarProductoTabla(Producto producto){
+        modelo.addRow(new Object[]{producto.getCodigo(), producto.getDescripcion(),
+            producto.getPrecio(), producto.getStock(), producto.getRubro()});
+    }
+
 }
