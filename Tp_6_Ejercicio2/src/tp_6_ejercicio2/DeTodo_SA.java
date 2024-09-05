@@ -13,7 +13,7 @@ import java.util.TreeSet;
  * @author Lenovo
  */
 public class DeTodo_SA extends javax.swing.JFrame {
-    private static TreeSet<Producto> productos = new TreeSet<>();
+    static TreeSet<Producto> productos = new TreeSet<>();
 
     /**
      * Creates new form DeTodo_SA

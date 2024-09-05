@@ -55,5 +55,9 @@ public class Producto {
     public void setRubro(Rubro rubro) {
         this.rubro = rubro;
     }
+
+    Rubro getCategoria() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
       
 }
