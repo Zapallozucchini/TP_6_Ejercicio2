@@ -4,8 +4,6 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
 
     public ListadoPorRubro() {
         initComponents();
-      //  cargarComboBox();
-      //  cargarModeloTabla();
     }
 
     
@@ -30,6 +28,7 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setText("Seleccionar el Rubro:");
 
+        jCBListadoPorRubro.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jCBListadoPorRubro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBListadoPorRubroActionPerformed(evt);
@@ -74,7 +73,7 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(jCBListadoPorRubro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -93,13 +92,4 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTListadoPorRubro;
     // End of variables declaration//GEN-END:variables
-
-   // private void cargarComboBox() {
-       
-   // }
-
-  //  private void cargarModeloTabla() {
-        
-  //  }
-
 }

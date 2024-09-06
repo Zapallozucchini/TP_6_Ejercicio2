@@ -193,6 +193,7 @@ public static DefaultTableModel modelo = new DefaultTableModel();
             }
         });
 
+        jBCerrar.setBackground(new java.awt.Color(225, 39, 39));
         jBCerrar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jBCerrar.setText("Cerrar");
         jBCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -307,9 +308,9 @@ public static DefaultTableModel modelo = new DefaultTableModel();
     }//GEN-LAST:event_jBNuevoActionPerformed
 
     private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed
+       
         
         dispose();
-        
     }//GEN-LAST:event_jBCerrarActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed

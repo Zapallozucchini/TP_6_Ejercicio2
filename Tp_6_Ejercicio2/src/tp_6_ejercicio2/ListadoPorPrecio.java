@@ -42,6 +42,7 @@ public class ListadoPorPrecio extends javax.swing.JInternalFrame {
         jLEntre$.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLEntre$.setText("Entre $");
 
+        jTConsultaPrecio1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jTConsultaPrecio1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTConsultaPrecio1ActionPerformed(evt);
@@ -51,6 +52,7 @@ public class ListadoPorPrecio extends javax.swing.JInternalFrame {
         jLLabelY.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLLabelY.setText("y");
 
+        jTConsultaPrecio2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jTConsultaPrecio2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTConsultaPrecio2ActionPerformed(evt);
@@ -107,7 +109,7 @@ public class ListadoPorPrecio extends javax.swing.JInternalFrame {
                     .addComponent(jLEntre$)
                     .addComponent(jTConsultaPrecio2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
