@@ -1,9 +1,12 @@
 package tp_6_ejercicio2;
 
+import static tp_6_ejercicio2.ListadoPorNombre.modelo;
+
 public class ListadoPorRubro extends javax.swing.JInternalFrame {
 
     public ListadoPorRubro() {
         initComponents();
+        cargarModeloTabla();
     }
 
     
@@ -32,6 +35,11 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
         jCBListadoPorRubro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBListadoPorRubroActionPerformed(evt);
+            }
+        });
+        jCBListadoPorRubro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jCBListadoPorRubroKeyReleased(evt);
             }
         });
 
@@ -84,6 +92,29 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
   
     }//GEN-LAST:event_jCBListadoPorRubroActionPerformed
 
+    private void jCBListadoPorRubroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCBListadoPorRubroKeyReleased
+          borrarFilas();
+        for (Producto p: Gestion_de_Productos.listadoProducto){
+        if (p.getDescripcion().startsWith(jCBListadoPorRubro.getName())){
+            modelo.addRow(new Object[]{
+                p.getCodigo(),p.getDescripcion(),p.getPrecio(), p.getStock()
+            });
+        }
+    }  
+    }//GEN-LAST:event_jCBListadoPorRubroKeyReleased
+private void cargarModeloTabla(){
+        if (modelo.getColumnCount() == 0) {
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Stock");
+        modelo.addColumn("Rubro");
+    }
+    jTListadoPorRubro.setModel(modelo);
+    }
+    public static void borrarFilas(){
+        modelo.setRowCount(0);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jCBListadoPorRubro;
