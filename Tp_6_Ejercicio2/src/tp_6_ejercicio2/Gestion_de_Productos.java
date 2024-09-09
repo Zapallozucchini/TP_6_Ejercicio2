@@ -393,12 +393,14 @@ public static DefaultTableModel modelo = new DefaultTableModel();
     }
     
     private void cargarModeloTabla(){
+        if (modelo.getColumnCount() == 0) {
         modelo.addColumn("Codigo");
         modelo.addColumn("Descripcion");
         modelo.addColumn("Precio");
         modelo.addColumn("Stock");
         modelo.addColumn("Rubro");
-        jTFiltrar.setModel(modelo);
+    }
+    jTFiltrar.setModel(modelo);
     }
 
     private void agregarProductoTabla(Producto producto){
