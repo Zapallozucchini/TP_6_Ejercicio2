@@ -8,19 +8,22 @@ package tp_6_ejercicio2;
 
 import java.util.TreeSet;
 import javax.swing.table.DefaultTableModel;
+import static tp_6_ejercicio2.Gestion_de_Productos.listadoProducto;
+import static tp_6_ejercicio2.Rubro.COMESTIBLE;
 
 /**
  *
  * @author Lenovo
  */
 public class DeTodo_SA extends javax.swing.JFrame {
-    static TreeSet<Producto> productos = new TreeSet<>();
+    public static TreeSet<Producto> productos = new TreeSet<>();
     public static DefaultTableModel modelo = new DefaultTableModel();
     /**
      * Creates new form DeTodo_SA
      */
     public DeTodo_SA() {
         initComponents();
+        cargarProductosDefault();
         
     }
 
@@ -190,4 +193,15 @@ public class DeTodo_SA extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMIGestionDeProducto;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarProductosDefault(){
+        Producto p1= new Producto(1,"Pan",150.50, 10,COMESTIBLE);
+        Producto p2= new Producto(2,"Pan Medio Kilo",150.50, 10,COMESTIBLE);
+        
+       listadoProducto.add(p1);
+       listadoProducto.add(p2);
+       
+       
+    }
+
 }

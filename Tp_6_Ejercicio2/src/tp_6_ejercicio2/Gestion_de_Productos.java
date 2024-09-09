@@ -8,8 +8,9 @@ package tp_6_ejercicio2;
 import java.util.TreeSet;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import static tp_6_ejercicio2.Rubro.COMESTIBLE;
+
+
 
 /**
  *
@@ -17,7 +18,7 @@ import static tp_6_ejercicio2.Rubro.COMESTIBLE;
  */
 public class Gestion_de_Productos extends javax.swing.JInternalFrame {
 public static TreeSet<Producto> listadoProducto = new TreeSet<>();
-public static DefaultTableModel modelo = new DefaultTableModel();
+
     /**
      * Creates new form Gestion_de_Productos
      */
@@ -25,7 +26,7 @@ public static DefaultTableModel modelo = new DefaultTableModel();
         initComponents();
         cargarComboBox();
         cargarModeloTabla();
-        cargarProductosDefault();
+        agregarProductoTablaPorDefault();
     }
 
     
@@ -367,27 +368,46 @@ public static DefaultTableModel modelo = new DefaultTableModel();
     }
     
     private void cargarModeloTabla(){
-        if (modelo.getColumnCount() == 0) {
-        modelo.addColumn("Codigo");
-        modelo.addColumn("Descripcion");
-        modelo.addColumn("Precio");
-        modelo.addColumn("Stock");
-        modelo.addColumn("Rubro");
+        if (DeTodo_SA.modelo.getColumnCount() == 0) {
+        DeTodo_SA.modelo.addColumn("Codigo");
+        DeTodo_SA.modelo.addColumn("Descripcion");
+        DeTodo_SA.modelo.addColumn("Precio");
+        DeTodo_SA.modelo.addColumn("Stock");
+        DeTodo_SA.modelo.addColumn("Rubro");
     }
-    jTFiltrar.setModel(modelo);
+    jTFiltrar.setModel(DeTodo_SA.modelo);
     }
 
     private void agregarProductoTabla(Producto producto){
-        modelo.addRow(new Object[]{producto.getCodigo(), producto.getDescripcion(),
+        
+        DeTodo_SA.modelo.addRow(new Object[]{producto.getCodigo(), producto.getDescripcion(),
             producto.getPrecio(), producto.getStock(), producto.getRubro()});
     }
     
-    private void cargarProductosDefault(){
-        Producto p1= new Producto(1,"Pan",150.50, 10,COMESTIBLE);
-        Producto p2= new Producto(2,"Pan Medio Kilo",150.50, 10,COMESTIBLE);
-        
-       listadoProducto.add(p1);
-       listadoProducto.add(p2);
+    private void agregarProductoTablaPorDefault(){  
+       
+    boolean producto1Existe = false;
+    boolean producto2Existe = false;
+
+    for (int i = 0; i < DeTodo_SA.modelo.getRowCount(); i++) {
+        int codigoProducto = (int) DeTodo_SA.modelo.getValueAt(i, 0);
+        if (codigoProducto == 1) {
+            producto1Existe = true;
+        }
+        if (codigoProducto == 2) {
+            producto2Existe = true;
+        }
     }
 
+    if (!producto1Existe) {
+        DeTodo_SA.modelo.addRow(new Object[]{1, "Pan", 150.5, 10, "COMESTIBLE"});
+    }
+    if (!producto2Existe) {
+        DeTodo_SA.modelo.addRow(new Object[]{2, "Pan Medio Kilo", 150.5, 10, "COMESTIBLE"});
+    }
+
+    // Establece el modelo en la tabla
+    jTFiltrar.setModel(DeTodo_SA.modelo);
+    
+    }
 }

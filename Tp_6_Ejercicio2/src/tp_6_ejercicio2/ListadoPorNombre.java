@@ -6,7 +6,7 @@ package tp_6_ejercicio2;
 
 import javax.swing.table.DefaultTableModel;
 import static tp_6_ejercicio2.DeTodo_SA.modelo;
-import static tp_6_ejercicio2.Gestion_de_Productos.modelo;
+
 
 /**
  *
