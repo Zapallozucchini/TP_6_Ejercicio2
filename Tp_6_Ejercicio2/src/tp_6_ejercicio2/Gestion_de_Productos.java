@@ -9,6 +9,7 @@ import java.util.TreeSet;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static tp_6_ejercicio2.Rubro.COMESTIBLE;
 
 /**
  *
@@ -24,6 +25,7 @@ public static DefaultTableModel modelo = new DefaultTableModel();
         initComponents();
         cargarComboBox();
         cargarModeloTabla();
+        cargarProductosDefault();
     }
 
     
@@ -378,6 +380,14 @@ public static DefaultTableModel modelo = new DefaultTableModel();
     private void agregarProductoTabla(Producto producto){
         modelo.addRow(new Object[]{producto.getCodigo(), producto.getDescripcion(),
             producto.getPrecio(), producto.getStock(), producto.getRubro()});
+    }
+    
+    private void cargarProductosDefault(){
+        Producto p1= new Producto(1,"Pan",150.50, 10,COMESTIBLE);
+        Producto p2= new Producto(2,"Pan Medio Kilo",150.50, 10,COMESTIBLE);
+        
+       listadoProducto.add(p1);
+       listadoProducto.add(p2);
     }
 
 }
