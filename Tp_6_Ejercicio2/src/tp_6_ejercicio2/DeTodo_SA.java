@@ -7,6 +7,7 @@ package tp_6_ejercicio2;
 
 
 import java.util.TreeSet;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,12 +15,13 @@ import java.util.TreeSet;
  */
 public class DeTodo_SA extends javax.swing.JFrame {
     static TreeSet<Producto> productos = new TreeSet<>();
-
+    public static DefaultTableModel modelo = new DefaultTableModel();
     /**
      * Creates new form DeTodo_SA
      */
     public DeTodo_SA() {
         initComponents();
+        
     }
 
     /**
@@ -176,6 +178,7 @@ public class DeTodo_SA extends javax.swing.JFrame {
             }
         });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;

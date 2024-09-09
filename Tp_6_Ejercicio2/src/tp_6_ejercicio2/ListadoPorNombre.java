@@ -4,6 +4,10 @@
  */
 package tp_6_ejercicio2;
 
+import javax.swing.table.DefaultTableModel;
+import static tp_6_ejercicio2.DeTodo_SA.modelo;
+import static tp_6_ejercicio2.Gestion_de_Productos.modelo;
+
 /**
  *
  * @author Elco-chino
@@ -13,8 +17,10 @@ public class ListadoPorNombre extends javax.swing.JInternalFrame {
     /**
      * Creates new form ListadoPorNombre
      */
+    public static DefaultTableModel modelo = new DefaultTableModel();
     public ListadoPorNombre() {
         initComponents();
+        cargarModeloTabla();
     }
 
     /**
@@ -29,9 +35,9 @@ public class ListadoPorNombre extends javax.swing.JInternalFrame {
         jFileChooser1 = new javax.swing.JFileChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTNombre = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTListadoPorNombre = new javax.swing.JTable();
+        jTListadoPorNombreTabla = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
@@ -45,9 +51,14 @@ public class ListadoPorNombre extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setText("Ingrese descripción:");
 
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jTNombre.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jTNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTNombreKeyReleased(evt);
+            }
+        });
 
-        jTListadoPorNombre.setModel(new javax.swing.table.DefaultTableModel(
+        jTListadoPorNombreTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -58,7 +69,7 @@ public class ListadoPorNombre extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTListadoPorNombre);
+        jScrollPane2.setViewportView(jTListadoPorNombreTabla);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,7 +83,7 @@ public class ListadoPorNombre extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1)))
+                        .addComponent(jTNombre)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -82,7 +93,7 @@ public class ListadoPorNombre extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
                 .addContainerGap())
@@ -91,13 +102,37 @@ public class ListadoPorNombre extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTNombreKeyReleased
+            borrarFilas();
+        for (Producto p: Gestion_de_Productos.listadoProducto){
+        if (p.getDescripcion().startsWith(jTNombre.getText())){
+            modelo.addRow(new Object[]{
+                p.getCodigo(),p.getDescripcion(),p.getPrecio(), p.getStock()
+            });
+        }
+    }
+    }//GEN-LAST:event_jTNombreKeyReleased
+private void cargarModeloTabla(){
+        if (modelo.getColumnCount() == 0) {
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Stock");
+        modelo.addColumn("Rubro");
+    }
+    jTListadoPorNombreTabla.setModel(modelo);
+    }
+    public static void borrarFilas(){
+        modelo.setRowCount(0);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTListadoPorNombre;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable jTListadoPorNombreTabla;
+    private javax.swing.JTextField jTNombre;
     // End of variables declaration//GEN-END:variables
 }
