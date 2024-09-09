@@ -1,12 +1,14 @@
 package tp_6_ejercicio2;
 
-import static tp_6_ejercicio2.ListadoPorNombre.modelo;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 
 public class ListadoPorRubro extends javax.swing.JInternalFrame {
 
     public ListadoPorRubro() {
-        initComponents();
+       initComponents();
         cargarModeloTabla();
+        cargarRubros(); 
     }
 
     
@@ -93,26 +95,38 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCBListadoPorRubroActionPerformed
 
     private void jCBListadoPorRubroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCBListadoPorRubroKeyReleased
-          borrarFilas();
-        for (Producto p: Gestion_de_Productos.listadoProducto){
-        if (p.getDescripcion().startsWith(jCBListadoPorRubro.getName())){
-            modelo.addRow(new Object[]{
-                p.getCodigo(),p.getDescripcion(),p.getPrecio(), p.getStock()
-            });
-        }
-    }  
+       String rubroSeleccionado = (String) jCBListadoPorRubro.getSelectedItem();
+        borrarFilas();
+        
+        for (Producto p : Gestion_de_Productos.listadoProducto) {
+            if (p.getRubro().toString().equalsIgnoreCase(rubroSeleccionado)) {
+                modelo.addRow(new Object[]{
+                    p.getCodigo(), p.getDescripcion(), p.getPrecio(), p.getStock(), p.getRubro()
+                });
+            }
+        }  
     }//GEN-LAST:event_jCBListadoPorRubroKeyReleased
-private void cargarModeloTabla(){
+  private void cargarModeloTabla() {
         if (modelo.getColumnCount() == 0) {
-        modelo.addColumn("Codigo");
-        modelo.addColumn("Descripcion");
-        modelo.addColumn("Precio");
-        modelo.addColumn("Stock");
-        modelo.addColumn("Rubro");
+            modelo.addColumn("Codigo");
+            modelo.addColumn("Descripcion");
+            modelo.addColumn("Precio");
+            modelo.addColumn("Stock");
+            modelo.addColumn("Rubro");
+        }
+        jTListadoPorRubro.setModel(modelo);
     }
-    jTListadoPorRubro.setModel(modelo);
+
+    private void cargarRubros() {
+        // Supongamos que los rubros se obtienen de una enumeración o una lista
+        DefaultComboBoxModel<String> modeloComboBox = new DefaultComboBoxModel<>();
+        modeloComboBox.addElement("COMESTIBLE");
+        modeloComboBox.addElement("BEBIDAS");
+        modeloComboBox.addElement("LIMPIEZA");
+        jCBListadoPorRubro.setModel(modeloComboBox);
     }
-    public static void borrarFilas(){
+
+    public static void borrarFilas() {
         modelo.setRowCount(0);
     }
 
@@ -123,4 +137,5 @@ private void cargarModeloTabla(){
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTListadoPorRubro;
     // End of variables declaration//GEN-END:variables
+private static final DefaultTableModel modelo = new DefaultTableModel();
 }
