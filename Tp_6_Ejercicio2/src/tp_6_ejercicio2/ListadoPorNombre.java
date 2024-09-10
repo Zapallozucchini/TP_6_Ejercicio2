@@ -4,7 +4,7 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class ListadoPorNombre extends javax.swing.JInternalFrame {
-public static DefaultTableModel modelo = new DefaultTableModel();
+
 
 
     public ListadoPorNombre() {
@@ -95,27 +95,26 @@ public static DefaultTableModel modelo = new DefaultTableModel();
             borrarFilas();
         for (Producto p: Gestion_de_Productos.listadoProducto){
         if (p.getDescripcion().startsWith(jTNombre.getText())){
-            modelo.addRow(new Object[]{
+             DeTodo_SA.modelo.addRow(new Object[]{
                 p.getCodigo(),p.getDescripcion(),p.getPrecio(), p.getStock()
             });
         }
     }
     }//GEN-LAST:event_jTNombreKeyReleased
 private void cargarModeloTabla(){
-        if (modelo.getColumnCount() == 0) {
-        modelo.addColumn("Codigo");
-        modelo.addColumn("Descripcion");
-        modelo.addColumn("Precio");
-        modelo.addColumn("Stock");
-        modelo.addColumn("Rubro");
+        if (DeTodo_SA.modelo.getColumnCount() == 0) {
+        DeTodo_SA.modelo.addColumn("Codigo");
+        DeTodo_SA.modelo.addColumn("Descripcion");
+        DeTodo_SA.modelo.addColumn("Precio");
+        DeTodo_SA.modelo.addColumn("Stock");
+        DeTodo_SA.modelo.addColumn("Rubro");
     }
-    jTListadoPorNombreTabla.setModel(modelo);
+    jTListadoPorNombreTabla.setModel(DeTodo_SA.modelo);
     
     }
 
-
     public static void borrarFilas(){
-        modelo.setRowCount(0);
+         DeTodo_SA.modelo.setRowCount(0);
     }
 
 

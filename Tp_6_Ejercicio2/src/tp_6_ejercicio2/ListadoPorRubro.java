@@ -1,6 +1,10 @@
 package tp_6_ejercicio2;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import static tp_6_ejercicio2.DeTodo_SA.modelo;
 
 
 public class ListadoPorRubro extends javax.swing.JInternalFrame {
@@ -35,14 +39,14 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
         jLabel2.setText("Seleccionar el Rubro:");
 
         jCBListadoPorRubro.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
+        jCBListadoPorRubro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCBListadoPorRubroItemStateChanged(evt);
+            }
+        });
         jCBListadoPorRubro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBListadoPorRubroActionPerformed(evt);
-            }
-        });
-        jCBListadoPorRubro.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jCBListadoPorRubroKeyReleased(evt);
             }
         });
 
@@ -95,19 +99,26 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
   
     }//GEN-LAST:event_jCBListadoPorRubroActionPerformed
 
-    private void jCBListadoPorRubroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCBListadoPorRubroKeyReleased
-       String rubroSeleccionado = (String) jCBListadoPorRubro.getSelectedItem();
-        borrarFilas();
-        
-        for (Producto p : Gestion_de_Productos.listadoProducto) {
-            if (p.getRubro().toString().equalsIgnoreCase(rubroSeleccionado)) {
-               DeTodo_SA.modelo.addRow(new Object[]{
-                    p.getCodigo(), p.getDescripcion(), p.getPrecio(), p.getStock(), p.getRubro()
-                });
-            }
-        }  
-    }//GEN-LAST:event_jCBListadoPorRubroKeyReleased
-  private void cargarModeloTabla() {
+    private void jCBListadoPorRubroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBListadoPorRubroItemStateChanged
+       
+        // Obtener el rubro seleccionado del JComboBox (como Enum)
+    Rubro rubroSeleccionado = (Rubro) jCBListadoPorRubro.getSelectedItem();
+    
+    // Inicializar TableRowSorter con el modelo de la tabla
+    TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modelo);
+    jTListadoPorRubro.setRowSorter(tr);
+
+    if (rubroSeleccionado != null) {
+        // Filtrar utilizando el nombre del Enum como cadena
+        tr.setRowFilter(RowFilter.regexFilter(rubroSeleccionado.name()));
+    } else {
+        // Si no se seleccionó un rubro, restablecer el filtro
+        jTListadoPorRubro.setRowSorter(tr);
+    }
+    }//GEN-LAST:event_jCBListadoPorRubroItemStateChanged
+    
+    
+    private void cargarModeloTabla() {
        if (DeTodo_SA.modelo.getColumnCount() == 0) {
         DeTodo_SA.modelo.addColumn("Codigo");
         DeTodo_SA.modelo.addColumn("Descripcion");

@@ -9,6 +9,8 @@ import java.util.TreeSet;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import static tp_6_ejercicio2.Rubro.COMESTIBLE;
+import static tp_6_ejercicio2.Rubro.LIMPIEZA;
+import static tp_6_ejercicio2.Rubro.PERFUMERIA;
 
 
 
@@ -389,6 +391,8 @@ public static TreeSet<Producto> listadoProducto = new TreeSet<>();
        
     boolean producto1Existe = false;
     boolean producto2Existe = false;
+    boolean producto3Existe = false;
+    boolean producto4Existe = false;
 
     for (int i = 0; i < DeTodo_SA.modelo.getRowCount(); i++) {
         int codigoProducto = (int) DeTodo_SA.modelo.getValueAt(i, 0);
@@ -398,13 +402,25 @@ public static TreeSet<Producto> listadoProducto = new TreeSet<>();
         if (codigoProducto == 2) {
             producto2Existe = true;
         }
+         if (codigoProducto == 3) {
+            producto3Existe = true;
+        }
+          if (codigoProducto == 4) {
+            producto4Existe = true;
+        }
     }
 
     if (!producto1Existe) {
-        DeTodo_SA.modelo.addRow(new Object[]{1, "Pan", 150.5, 10, "COMESTIBLE"});
+        DeTodo_SA.modelo.addRow(new Object[]{1, "Pan", 150.5, 10,COMESTIBLE});
     }
     if (!producto2Existe) {
-        DeTodo_SA.modelo.addRow(new Object[]{2, "Pan Medio Kilo", 150.5, 10, "COMESTIBLE"});
+        DeTodo_SA.modelo.addRow(new Object[]{2, "Pan Medio Kilo", 150.5, 10, COMESTIBLE});
+    }
+    if (!producto3Existe) {
+        DeTodo_SA.modelo.addRow(new Object[]{3, "Lavandina", 10.5, 50, LIMPIEZA});
+    }
+    if (!producto4Existe) {
+        DeTodo_SA.modelo.addRow(new Object[]{4, "Paco", 1540.5, 10, PERFUMERIA});
     }
 
     // Establece el modelo en la tabla

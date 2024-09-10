@@ -10,6 +10,8 @@ import java.util.TreeSet;
 import javax.swing.table.DefaultTableModel;
 import static tp_6_ejercicio2.Gestion_de_Productos.listadoProducto;
 import static tp_6_ejercicio2.Rubro.COMESTIBLE;
+import static tp_6_ejercicio2.Rubro.LIMPIEZA;
+import static tp_6_ejercicio2.Rubro.PERFUMERIA;
 
 /**
  *
@@ -197,9 +199,13 @@ public class DeTodo_SA extends javax.swing.JFrame {
     private void cargarProductosDefault(){
         Producto p1= new Producto(1,"Pan",150.50, 10,COMESTIBLE);
         Producto p2= new Producto(2,"Pan Medio Kilo",150.50, 10,COMESTIBLE);
+        Producto p3= new Producto(3,"Lavandina", 10.5, 50, LIMPIEZA);
+        Producto p4= new Producto(4, "Paco", 1540.5, 10, PERFUMERIA);
         
        listadoProducto.add(p1);
        listadoProducto.add(p2);
+       listadoProducto.add(p3);
+       listadoProducto.add(p4);
        
        
     }
