@@ -102,14 +102,14 @@ public static DefaultTableModel modelo = new DefaultTableModel();
     }
     }//GEN-LAST:event_jTNombreKeyReleased
 private void cargarModeloTabla(){
-        if (DeTodo_SA.modelo.getColumnCount() == 0) {
-        DeTodo_SA.modelo.addColumn("Codigo");
-        DeTodo_SA.modelo.addColumn("Descripcion");
-        DeTodo_SA.modelo.addColumn("Precio");
-        DeTodo_SA.modelo.addColumn("Stock");
-        DeTodo_SA.modelo.addColumn("Rubro");
+        if (modelo.getColumnCount() == 0) {
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Stock");
+        modelo.addColumn("Rubro");
     }
-    jTListadoPorNombreTabla.setModel(DeTodo_SA.modelo);
+    jTListadoPorNombreTabla.setModel(modelo);
     
     }
 
