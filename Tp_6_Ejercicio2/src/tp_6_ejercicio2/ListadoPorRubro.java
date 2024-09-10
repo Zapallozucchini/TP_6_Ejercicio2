@@ -1,9 +1,11 @@
 package tp_6_ejercicio2;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.table.DefaultTableModel;
+
 
 public class ListadoPorRubro extends javax.swing.JInternalFrame {
+    
+    
     public ListadoPorRubro() {
        initComponents();
         cargarModeloTabla();
@@ -118,12 +120,7 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
     }
 
     private void cargarRubros() {
-        // Supongamos que los rubros se obtienen de una enumeración o una lista
-        DefaultComboBoxModel<String> modeloComboBox = new DefaultComboBoxModel<>();
-        modeloComboBox.addElement("COMESTIBLE");
-        modeloComboBox.addElement("BEBIDAS");
-        modeloComboBox.addElement("LIMPIEZA");
-        jCBListadoPorRubro.setModel(modeloComboBox);
+        jCBListadoPorRubro.setModel(new DefaultComboBoxModel<>(Rubro.values()));
     }
 
     public static void borrarFilas() {
@@ -131,7 +128,7 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jCBListadoPorRubro;
+    private javax.swing.JComboBox<Rubro> jCBListadoPorRubro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

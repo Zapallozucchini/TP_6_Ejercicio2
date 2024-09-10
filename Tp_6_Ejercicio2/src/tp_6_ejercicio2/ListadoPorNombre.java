@@ -1,22 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package tp_6_ejercicio2;
 
 import javax.swing.table.DefaultTableModel;
 
 
-/**
- *
- * @author Elco-chino
- */
 public class ListadoPorNombre extends javax.swing.JInternalFrame {
+public static DefaultTableModel modelo = new DefaultTableModel();
 
-    /**
-     * Creates new form ListadoPorNombre
-     */
-    public static DefaultTableModel modelo = new DefaultTableModel();
+
     public ListadoPorNombre() {
         initComponents();
         cargarModeloTabla();
@@ -112,15 +102,18 @@ public class ListadoPorNombre extends javax.swing.JInternalFrame {
     }
     }//GEN-LAST:event_jTNombreKeyReleased
 private void cargarModeloTabla(){
-        if (modelo.getColumnCount() == 0) {
-        modelo.addColumn("Codigo");
-        modelo.addColumn("Descripcion");
-        modelo.addColumn("Precio");
-        modelo.addColumn("Stock");
-        modelo.addColumn("Rubro");
+        if (DeTodo_SA.modelo.getColumnCount() == 0) {
+        DeTodo_SA.modelo.addColumn("Codigo");
+        DeTodo_SA.modelo.addColumn("Descripcion");
+        DeTodo_SA.modelo.addColumn("Precio");
+        DeTodo_SA.modelo.addColumn("Stock");
+        DeTodo_SA.modelo.addColumn("Rubro");
     }
-    jTListadoPorNombreTabla.setModel(modelo);
+    jTListadoPorNombreTabla.setModel(DeTodo_SA.modelo);
+    
     }
+
+
     public static void borrarFilas(){
         modelo.setRowCount(0);
     }
