@@ -4,7 +4,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 public class ListadoPorRubro extends javax.swing.JInternalFrame {
-
     public ListadoPorRubro() {
        initComponents();
         cargarModeloTabla();
@@ -100,21 +99,22 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
         
         for (Producto p : Gestion_de_Productos.listadoProducto) {
             if (p.getRubro().toString().equalsIgnoreCase(rubroSeleccionado)) {
-                modelo.addRow(new Object[]{
+               DeTodo_SA.modelo.addRow(new Object[]{
                     p.getCodigo(), p.getDescripcion(), p.getPrecio(), p.getStock(), p.getRubro()
                 });
             }
         }  
     }//GEN-LAST:event_jCBListadoPorRubroKeyReleased
   private void cargarModeloTabla() {
-        if (modelo.getColumnCount() == 0) {
-            modelo.addColumn("Codigo");
-            modelo.addColumn("Descripcion");
-            modelo.addColumn("Precio");
-            modelo.addColumn("Stock");
-            modelo.addColumn("Rubro");
-        }
-        jTListadoPorRubro.setModel(modelo);
+       if (DeTodo_SA.modelo.getColumnCount() == 0) {
+        DeTodo_SA.modelo.addColumn("Codigo");
+        DeTodo_SA.modelo.addColumn("Descripcion");
+        DeTodo_SA.modelo.addColumn("Precio");
+        DeTodo_SA.modelo.addColumn("Stock");
+        DeTodo_SA.modelo.addColumn("Rubro");
+    }
+    jTListadoPorRubro.setModel(DeTodo_SA.modelo);
+    
     }
 
     private void cargarRubros() {
@@ -127,7 +127,7 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
     }
 
     public static void borrarFilas() {
-        modelo.setRowCount(0);
+       DeTodo_SA.modelo.setRowCount(0);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -137,5 +137,5 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTListadoPorRubro;
     // End of variables declaration//GEN-END:variables
-private static final DefaultTableModel modelo = new DefaultTableModel();
+
 }

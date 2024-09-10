@@ -286,12 +286,13 @@ public static TreeSet<Producto> listadoProducto = new TreeSet<>();
     }//GEN-LAST:event_jTDescripcionActionPerformed
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
-        // TODO add your handling code here:
+       jTCodigo.setText("");
+       jTDescripcion.setText("");
+       jTPrecio.setText("");
+       jSStock.setValue(0);
     }//GEN-LAST:event_jBNuevoActionPerformed
 
     private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed
-       
-        
         dispose();
     }//GEN-LAST:event_jBCerrarActionPerformed
 
