@@ -11,11 +11,10 @@ package tp_6_ejercicio2;
  */
 public class ListadoPorPrecio extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form ListadoPorPrecio
-     */
+   
     public ListadoPorPrecio() {
         initComponents();
+        cargarModeloTabla();
     }
 
     /**
@@ -48,6 +47,11 @@ public class ListadoPorPrecio extends javax.swing.JInternalFrame {
                 jTConsultaPrecio1ActionPerformed(evt);
             }
         });
+        jTConsultaPrecio1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTConsultaPrecio1KeyReleased(evt);
+            }
+        });
 
         jLLabelY.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLLabelY.setText("y");
@@ -56,6 +60,11 @@ public class ListadoPorPrecio extends javax.swing.JInternalFrame {
         jTConsultaPrecio2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTConsultaPrecio2ActionPerformed(evt);
+            }
+        });
+        jTConsultaPrecio2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTConsultaPrecio2KeyReleased(evt);
             }
         });
 
@@ -109,13 +118,19 @@ public class ListadoPorPrecio extends javax.swing.JInternalFrame {
                     .addComponent(jLEntre$)
                     .addComponent(jTConsultaPrecio2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    public static void borrarFilas(){
+         DeTodo_SA.modelo.setRowCount(0);
+    }
+    
     private void jTConsultaPrecio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTConsultaPrecio1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTConsultaPrecio1ActionPerformed
@@ -124,7 +139,38 @@ public class ListadoPorPrecio extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTConsultaPrecio2ActionPerformed
 
+    private void jTConsultaPrecio2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTConsultaPrecio2KeyReleased
+       borrarFilas();
+        double precioMinimo = Double.parseDouble(jTConsultaPrecio1.getText().trim());
+        double precioMaximo = Double.parseDouble(jTConsultaPrecio2.getText().trim());
+        for (Producto p : Gestion_de_Productos.listadoProducto) {
+            if (p.getPrecio() > precioMinimo && p.getPrecio() < precioMaximo) {
+                DeTodo_SA.modelo.addRow(new Object[]{
+                p.getCodigo(),p.getDescripcion(),p.getPrecio(), p.getStock()
+            });
+                        }
+        }  
+    }//GEN-LAST:event_jTConsultaPrecio2KeyReleased
 
+    private void jTConsultaPrecio1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTConsultaPrecio1KeyReleased
+        
+       
+    }//GEN-LAST:event_jTConsultaPrecio1KeyReleased
+
+    private void cargarModeloTabla(){
+        if (DeTodo_SA.modelo.getColumnCount() == 0) {
+        DeTodo_SA.modelo.addColumn("Codigo");
+        DeTodo_SA.modelo.addColumn("Descripcion");
+        DeTodo_SA.modelo.addColumn("Precio");
+        DeTodo_SA.modelo.addColumn("Stock");
+        DeTodo_SA.modelo.addColumn("Rubro");
+    }
+        jTTablaDePrecios.setModel(DeTodo_SA.modelo);}
+    
+    
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLEntre$;
     private javax.swing.JLabel jLLabelY;
@@ -134,4 +180,9 @@ public class ListadoPorPrecio extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTConsultaPrecio2;
     private javax.swing.JTable jTTablaDePrecios;
     // End of variables declaration//GEN-END:variables
+
+    
+    
+
+
 }
