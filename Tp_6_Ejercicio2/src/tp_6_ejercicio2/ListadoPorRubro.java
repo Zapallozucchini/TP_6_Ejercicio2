@@ -4,7 +4,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import static tp_6_ejercicio2.DeTodo_SA.modelo;
+
 
 
 public class ListadoPorRubro extends javax.swing.JInternalFrame {
@@ -14,7 +14,6 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
        initComponents();
         cargarModeloTabla();
         cargarRubros();
-        cargarProductos();
     }
 
     

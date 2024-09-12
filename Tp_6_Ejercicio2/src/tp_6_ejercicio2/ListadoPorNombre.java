@@ -10,6 +10,7 @@ public class ListadoPorNombre extends javax.swing.JInternalFrame {
     public ListadoPorNombre() {
         initComponents();
         cargarModeloTabla();
+        
     }
 
     /**
@@ -93,30 +94,23 @@ public class ListadoPorNombre extends javax.swing.JInternalFrame {
 
     private void jTNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTNombreKeyReleased
             borrarFilas();
-        for (Producto p: Gestion_de_Productos.listadoProducto){
+        for (Producto p: DeTodo_SA.productos){
         if (p.getDescripcion().startsWith(jTNombre.getText())){
              DeTodo_SA.modelo.addRow(new Object[]{
-                p.getCodigo(),p.getDescripcion(),p.getPrecio(), p.getStock()
+                p.getCodigo(),p.getDescripcion(),p.getPrecio(), p.getStock(),p.getRubro()
             });
         }
     }
     }//GEN-LAST:event_jTNombreKeyReleased
 private void cargarModeloTabla(){
-        if (DeTodo_SA.modelo.getColumnCount() == 0) {
-        DeTodo_SA.modelo.addColumn("Codigo");
-        DeTodo_SA.modelo.addColumn("Descripcion");
-        DeTodo_SA.modelo.addColumn("Precio");
-        DeTodo_SA.modelo.addColumn("Stock");
-        DeTodo_SA.modelo.addColumn("Rubro");
-    }
     jTListadoPorNombreTabla.setModel(DeTodo_SA.modelo);
-    
     }
 
     public static void borrarFilas(){
          DeTodo_SA.modelo.setRowCount(0);
     }
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser jFileChooser1;

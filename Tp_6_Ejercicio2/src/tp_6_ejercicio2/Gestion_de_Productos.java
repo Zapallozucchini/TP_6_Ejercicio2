@@ -19,7 +19,7 @@ import static tp_6_ejercicio2.Rubro.PERFUMERIA;
  * @author Lenovo
  */
 public class Gestion_de_Productos extends javax.swing.JInternalFrame {
-public static TreeSet<Producto> listadoProducto = new TreeSet<>();
+
 
     /**
      * Creates new form Gestion_de_Productos
@@ -28,7 +28,7 @@ public static TreeSet<Producto> listadoProducto = new TreeSet<>();
         initComponents();
         cargarComboBox();
         cargarModeloTabla();
-        agregarProductoTablaPorDefault();
+       
     }
 
     
@@ -307,7 +307,16 @@ public static TreeSet<Producto> listadoProducto = new TreeSet<>();
     }//GEN-LAST:event_jBActualizarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        // TODO add your handling code here:
+        
+         int selectedRow = jTFiltrar.getSelectedRow();
+                    if (selectedRow != -1) {
+                        int codigo = (int) DeTodo_SA.modelo.getValueAt(selectedRow, 0);
+                        Producto productoAEliminar = buscarProductoPorCodigo(codigo);
+                        if (productoAEliminar != null) {
+                            DeTodo_SA.productos.remove(productoAEliminar);
+                            DeTodo_SA.modelo.removeRow(selectedRow);
+                        }
+                    }
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
@@ -327,7 +336,7 @@ public static TreeSet<Producto> listadoProducto = new TreeSet<>();
         Producto producto = new Producto(codigo, descripcion, precio, stock, rubro);
 
         // Usar TreeSet para evitar duplicados
-        if (!listadoProducto.add(producto)) {
+        if (!DeTodo_SA.productos.add(producto)) {
             JOptionPane.showMessageDialog(null, "El producto ya existe.", "Error de duplicación", JOptionPane.WARNING_MESSAGE);
         } else {
             agregarProductoTabla(producto);
@@ -342,7 +351,14 @@ public static TreeSet<Producto> listadoProducto = new TreeSet<>();
     }
     }//GEN-LAST:event_jBGuardarActionPerformed
 
-
+    private static Producto buscarProductoPorCodigo(int codigo) {
+        for (Producto p : DeTodo_SA.productos) {
+            if (p.getCodigo() == codigo) {
+                return p;
+            }
+        }
+        return null;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBActualizar;
     private javax.swing.JButton jBBuscar;
@@ -369,17 +385,10 @@ public static TreeSet<Producto> listadoProducto = new TreeSet<>();
     private void cargarComboBox(){
         jCBRubro.setModel(new DefaultComboBoxModel<>(Rubro.values()));
     }
-    
     private void cargarModeloTabla(){
-        if (DeTodo_SA.modelo.getColumnCount() == 0) {
-        DeTodo_SA.modelo.addColumn("Codigo");
-        DeTodo_SA.modelo.addColumn("Descripcion");
-        DeTodo_SA.modelo.addColumn("Precio");
-        DeTodo_SA.modelo.addColumn("Stock");
-        DeTodo_SA.modelo.addColumn("Rubro");
+        jTFiltrar.setModel(DeTodo_SA.modelo);
     }
-    jTFiltrar.setModel(DeTodo_SA.modelo);
-    }
+    
 
     private void agregarProductoTabla(Producto producto){
         
@@ -387,44 +396,5 @@ public static TreeSet<Producto> listadoProducto = new TreeSet<>();
             producto.getPrecio(), producto.getStock(), producto.getRubro()});
     }
     
-    private void agregarProductoTablaPorDefault(){  
-       
-    boolean producto1Existe = false;
-    boolean producto2Existe = false;
-    boolean producto3Existe = false;
-    boolean producto4Existe = false;
-
-    for (int i = 0; i < DeTodo_SA.modelo.getRowCount(); i++) {
-        int codigoProducto = (int) DeTodo_SA.modelo.getValueAt(i, 0);
-        if (codigoProducto == 1) {
-            producto1Existe = true;
-        }
-        if (codigoProducto == 2) {
-            producto2Existe = true;
-        }
-         if (codigoProducto == 3) {
-            producto3Existe = true;
-        }
-          if (codigoProducto == 4) {
-            producto4Existe = true;
-        }
-    }
-
-    if (!producto1Existe) {
-        DeTodo_SA.modelo.addRow(new Object[]{1, "Pan", 150.5, 10,COMESTIBLE});
-    }
-    if (!producto2Existe) {
-        DeTodo_SA.modelo.addRow(new Object[]{2, "Pan Medio Kilo", 150.5, 10, COMESTIBLE});
-    }
-    if (!producto3Existe) {
-        DeTodo_SA.modelo.addRow(new Object[]{3, "Lavandina", 10.5, 50, LIMPIEZA});
-    }
-    if (!producto4Existe) {
-        DeTodo_SA.modelo.addRow(new Object[]{4, "Paco", 1540.5, 10, PERFUMERIA});
-    }
-
-    // Establece el modelo en la tabla
-    jTFiltrar.setModel(DeTodo_SA.modelo);
     
-    }
 }

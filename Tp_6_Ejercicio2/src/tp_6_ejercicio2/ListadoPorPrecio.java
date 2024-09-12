@@ -15,6 +15,7 @@ public class ListadoPorPrecio extends javax.swing.JInternalFrame {
     public ListadoPorPrecio() {
         initComponents();
         cargarModeloTabla();
+       
     }
 
     /**
@@ -143,10 +144,10 @@ public class ListadoPorPrecio extends javax.swing.JInternalFrame {
        borrarFilas();
         double precioMinimo = Double.parseDouble(jTConsultaPrecio1.getText().trim());
         double precioMaximo = Double.parseDouble(jTConsultaPrecio2.getText().trim());
-        for (Producto p : Gestion_de_Productos.listadoProducto) {
+        for (Producto p : DeTodo_SA.productos) {
             if (p.getPrecio() > precioMinimo && p.getPrecio() < precioMaximo) {
                 DeTodo_SA.modelo.addRow(new Object[]{
-                p.getCodigo(),p.getDescripcion(),p.getPrecio(), p.getStock()
+                p.getCodigo(),p.getDescripcion(),p.getPrecio(), p.getStock(),p.getRubro()
             });
                         }
         }  
@@ -168,8 +169,7 @@ public class ListadoPorPrecio extends javax.swing.JInternalFrame {
         jTTablaDePrecios.setModel(DeTodo_SA.modelo);}
     
     
-    
-    
+   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLEntre$;

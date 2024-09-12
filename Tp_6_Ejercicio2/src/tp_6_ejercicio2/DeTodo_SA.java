@@ -8,7 +8,7 @@ package tp_6_ejercicio2;
 
 import java.util.TreeSet;
 import javax.swing.table.DefaultTableModel;
-import static tp_6_ejercicio2.Gestion_de_Productos.listadoProducto;
+
 import static tp_6_ejercicio2.Rubro.COMESTIBLE;
 import static tp_6_ejercicio2.Rubro.LIMPIEZA;
 import static tp_6_ejercicio2.Rubro.PERFUMERIA;
@@ -26,6 +26,8 @@ public class DeTodo_SA extends javax.swing.JFrame {
     public DeTodo_SA() {
         initComponents();
         cargarProductosDefault();
+        cargarModeloTabla();
+        agregarProductoTablaPorDefault();
         
     }
 
@@ -202,12 +204,63 @@ public class DeTodo_SA extends javax.swing.JFrame {
         Producto p3= new Producto(3,"Lavandina", 10.5, 50, LIMPIEZA);
         Producto p4= new Producto(4, "Paco", 1540.5, 10, PERFUMERIA);
         
-       listadoProducto.add(p1);
-       listadoProducto.add(p2);
-       listadoProducto.add(p3);
-       listadoProducto.add(p4);
+       productos.add(p1);
+       productos.add(p2);
+       productos.add(p3);
+       productos.add(p4);
        
        
     }
+    
+    private void cargarModeloTabla(){
+        if (DeTodo_SA.modelo.getColumnCount() == 0) {
+        DeTodo_SA.modelo.addColumn("Codigo");
+        DeTodo_SA.modelo.addColumn("Descripcion");
+        DeTodo_SA.modelo.addColumn("Precio");
+        DeTodo_SA.modelo.addColumn("Stock");
+        DeTodo_SA.modelo.addColumn("Rubro");
+    }
+        
+    }
+    
+    private void agregarProductoTablaPorDefault(){  
+       
+    boolean producto1Existe = false;
+    boolean producto2Existe = false;
+    boolean producto3Existe = false;
+    boolean producto4Existe = false;
 
+    for (int i = 0; i < DeTodo_SA.modelo.getRowCount(); i++) {
+        int codigoProducto = (int) DeTodo_SA.modelo.getValueAt(i, 0);
+        if (codigoProducto == 1) {
+            producto1Existe = true;
+        }
+        if (codigoProducto == 2) {
+            producto2Existe = true;
+        }
+         if (codigoProducto == 3) {
+            producto3Existe = true;
+        }
+          if (codigoProducto == 4) {
+            producto4Existe = true;
+        }
+    }
+
+    if (!producto1Existe) {
+        DeTodo_SA.modelo.addRow(new Object[]{1, "Pan", 150.5, 10,COMESTIBLE});
+    }
+    if (!producto2Existe) {
+        DeTodo_SA.modelo.addRow(new Object[]{2, "Pan Medio Kilo", 150.5, 10, COMESTIBLE});
+    }
+    if (!producto3Existe) {
+        DeTodo_SA.modelo.addRow(new Object[]{3, "Lavandina", 10.5, 50, LIMPIEZA});
+    }
+    if (!producto4Existe) {
+        DeTodo_SA.modelo.addRow(new Object[]{4, "Paco", 1540.5, 10, PERFUMERIA});
+    }
+    }
+    
+    private void hola(){
+        System.out.println("Hola");
+    }
 }
