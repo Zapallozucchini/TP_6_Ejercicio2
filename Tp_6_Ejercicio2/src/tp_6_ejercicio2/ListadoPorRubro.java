@@ -13,7 +13,8 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
     public ListadoPorRubro() {
        initComponents();
         cargarModeloTabla();
-        cargarRubros(); 
+        cargarRubros();
+        cargarProductos();
     }
 
     
@@ -119,7 +120,7 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
     
     
     private void cargarModeloTabla() {
-       if (DeTodo_SA.modelo.getColumnCount() == 0) {
+       if(DeTodo_SA.modelo.getColumnCount() == 0) {
         DeTodo_SA.modelo.addColumn("Codigo");
         DeTodo_SA.modelo.addColumn("Descripcion");
         DeTodo_SA.modelo.addColumn("Precio");
@@ -129,7 +130,19 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
     jTListadoPorRubro.setModel(DeTodo_SA.modelo);
     
     }
-
+  private void cargarProductos() {
+        // Asegúrate de tener una lista de productos (debería estar en DeTodo_SA o ser pasada al modelo)
+        for (Producto producto : DeTodo_SA.productos) {
+            Object[] fila = {
+                producto.getCodigo(),
+                producto.getDescripcion(),
+                producto.getPrecio(),
+                producto.getStock(),
+                producto.getRubro()
+            };
+            DeTodo_SA.modelo.addRow(fila);
+        }
+    }
     private void cargarRubros() {
         jCBListadoPorRubro.setModel(new DefaultComboBoxModel<>(Rubro.values()));
     }
