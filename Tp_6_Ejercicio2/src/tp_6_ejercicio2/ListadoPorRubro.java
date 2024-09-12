@@ -45,11 +45,6 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
                 jCBListadoPorRubroItemStateChanged(evt);
             }
         });
-        jCBListadoPorRubro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBListadoPorRubroActionPerformed(evt);
-            }
-        });
 
         jTListadoPorRubro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -96,17 +91,13 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCBListadoPorRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBListadoPorRubroActionPerformed
-  
-    }//GEN-LAST:event_jCBListadoPorRubroActionPerformed
-
     private void jCBListadoPorRubroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBListadoPorRubroItemStateChanged
        
         // Obtener el rubro seleccionado del JComboBox (como Enum)
     Rubro rubroSeleccionado = (Rubro) jCBListadoPorRubro.getSelectedItem();
     
     // Inicializar TableRowSorter con el modelo de la tabla
-    TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modelo);
+    TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(DeTodo_SA.modelo);
     jTListadoPorRubro.setRowSorter(tr);
 
     if (rubroSeleccionado != null) {
