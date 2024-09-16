@@ -299,15 +299,37 @@ public class Gestion_de_Productos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBCerrarActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
+    try {
+    // Obtener el código ingresado
     int codigo = Integer.parseInt(jTCodigo.getText());
-        for (Producto p : DeTodo_SA.productos) {
-            if (p.getCodigo() == codigo) {
-                jTDescripcion.setText(p.getDescripcion());
-                jTPrecio.setText(String.valueOf(p.getPrecio()));
-                jCBRubro.setSelectedItem(p.getRubro());
-                jSStock.setValue(p.getStock());
-            }   
-            }
+    boolean productoEncontrado = false; // Para verificar si se encontró el producto
+    int codigoMaximo = -1; // Inicializamos el valor del código máximo
+
+    // Buscar el producto en la lista
+    for (Producto p : DeTodo_SA.productos) {
+        if (p.getCodigo() > codigoMaximo) {
+            codigoMaximo = p.getCodigo(); // Encontrar el código máximo en la lista
+        }
+        if (p.getCodigo() == codigo) {
+            // Si se encuentra el producto, actualizar los campos correspondientes
+            jTDescripcion.setText(p.getDescripcion());
+            jTPrecio.setText(String.valueOf(p.getPrecio()));
+            jCBRubro.setSelectedItem(p.getRubro());
+            jSStock.setValue(p.getStock());
+            productoEncontrado = true;
+            break; // Romper el ciclo una vez encontrado el producto
+        }
+    }
+
+    // Si no se encontró el producto, mostrar el mensaje
+    if (!productoEncontrado) {
+        JOptionPane.showMessageDialog(null, "No se encontró el producto, el código más alto es: " + codigoMaximo);
+    }
+    
+} catch (NumberFormatException e) {
+    // Manejar error si el código ingresado no es un número
+    JOptionPane.showMessageDialog(null, "El código debe ser un número válido.", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+}
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBActualizarActionPerformed
