@@ -299,7 +299,15 @@ public class Gestion_de_Productos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBCerrarActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
-        // TODO add your handling code here:
+    int codigo = Integer.parseInt(jTCodigo.getText());
+        for (Producto p : DeTodo_SA.productos) {
+            if (p.getCodigo() == codigo) {
+                jTDescripcion.setText(p.getDescripcion());
+                jTPrecio.setText(String.valueOf(p.getPrecio()));
+                jCBRubro.setSelectedItem(p.getRubro());
+                jSStock.setValue(p.getStock());
+            }   
+            }
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBActualizarActionPerformed
