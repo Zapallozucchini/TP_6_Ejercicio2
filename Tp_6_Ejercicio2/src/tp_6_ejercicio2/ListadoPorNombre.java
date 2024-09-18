@@ -1,16 +1,15 @@
 package tp_6_ejercicio2;
 
 import javax.swing.table.DefaultTableModel;
-
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
 
 public class ListadoPorNombre extends javax.swing.JInternalFrame {
-
-
 
     public ListadoPorNombre() {
         initComponents();
         cargarModeloTabla();
-        
+        initTableSorter();
     }
 
     /**
@@ -91,26 +90,35 @@ public class ListadoPorNombre extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private TableRowSorter<DefaultTableModel> rowSorter;
 
+private void initTableSorter() {
+        // Obtiene el modelo de la tabla actual
+        DefaultTableModel modelo = (DefaultTableModel) jTListadoPorNombreTabla.getModel();
+        rowSorter = new TableRowSorter<>(modelo);
+        jTListadoPorNombreTabla.setRowSorter(rowSorter);
+    }
+    
     private void jTNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTNombreKeyReleased
-            borrarFilas();
-        for (Producto p: DeTodo_SA.productos){
-        if (p.getDescripcion().startsWith(jTNombre.getText())){
-             DeTodo_SA.modelo.addRow(new Object[]{
-                p.getCodigo(),p.getDescripcion(),p.getPrecio(), p.getStock(),p.getRubro()
+         String searchText = jTNombre.getText();
+        if (searchText.trim().isEmpty()) {
+            rowSorter.setRowFilter(null);
+        } else {
+            rowSorter.setRowFilter(RowFilter.regexFilter("(?i)^" + searchText, 1)); // Filtra la columna 1 (Descripción)
+        }
+    }//GEN-LAST:event_jTNombreKeyReleased
+    private void cargarModeloTabla() {
+        DefaultTableModel modelo = (DefaultTableModel) jTListadoPorNombreTabla.getModel();
+        modelo.setRowCount(0); // Limpia las filas existentes
+        // Aquí deberías cargar datos de `DeTodo_SA` en el modelo
+        // Ejemplo:
+        for (Producto p : DeTodo_SA.productos) {
+            modelo.addRow(new Object[]{
+                p.getCodigo(), p.getDescripcion(), p.getPrecio(), p.getStock(), p.getRubro()
             });
         }
     }
-    }//GEN-LAST:event_jTNombreKeyReleased
-private void cargarModeloTabla(){
-    jTListadoPorNombreTabla.setModel(DeTodo_SA.modelo);
-    }
 
-    public static void borrarFilas(){
-         DeTodo_SA.modelo.setRowCount(0);
-    }
-
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser jFileChooser1;

@@ -5,6 +5,11 @@
  */
 package tp_6_ejercicio2;
 
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author Lenovo
@@ -141,16 +146,31 @@ public class ListadoPorPrecio extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTConsultaPrecio2ActionPerformed
 
     private void jTConsultaPrecio2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTConsultaPrecio2KeyReleased
-       borrarFilas();
+        try {
+        // Obtener los precios mínimos y máximos
         double precioMinimo = Double.parseDouble(jTConsultaPrecio1.getText().trim());
         double precioMaximo = Double.parseDouble(jTConsultaPrecio2.getText().trim());
-        for (Producto p : DeTodo_SA.productos) {
-            if (p.getPrecio() > precioMinimo && p.getPrecio() < precioMaximo) {
-                DeTodo_SA.modelo.addRow(new Object[]{
-                p.getCodigo(),p.getDescripcion(),p.getPrecio(), p.getStock(),p.getRubro()
-            });
-                        }
-        }  
+
+        // Obtener el modelo de la tabla
+        DefaultTableModel modelo = (DefaultTableModel) jTTablaDePrecios.getModel();
+
+        // Crear un TableRowSorter para la tabla
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(modelo);
+        jTTablaDePrecios.setRowSorter(sorter);
+
+        // Aplicar el filtro para mostrar solo los productos dentro del rango de precios
+        sorter.setRowFilter(new RowFilter<DefaultTableModel, Integer>() {
+            @Override
+            public boolean include(Entry<? extends DefaultTableModel, ? extends Integer> entry) {
+                double precio = (double) entry.getValue(2);  // Columna de precio
+                return precio >= precioMinimo && precio <= precioMaximo;
+            }
+        });
+
+    } catch (NumberFormatException e) {
+        // Mostrar mensaje de error si ocurre una excepción al convertir los precios
+        JOptionPane.showMessageDialog(null, "Ingrese un precio válido en ambos campos.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jTConsultaPrecio2KeyReleased
 
     private void jTConsultaPrecio1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTConsultaPrecio1KeyReleased
